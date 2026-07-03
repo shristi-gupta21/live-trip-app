@@ -1,8 +1,8 @@
 import nextPlugin from "@next/eslint-plugin-next";
 import tanstackQuery from "@tanstack/eslint-plugin-query";
-import tseslint from "typescript-eslint";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
+import tseslint from "typescript-eslint";
 
 const eslintConfig = [
   {
