@@ -1,3 +1,5 @@
+import { Checkbox } from "@/components/ui/checkbox";
+
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center font-sans ">
@@ -6,6 +8,7 @@ export default function Home() {
         <p className="mt-2 text-muted-foreground">
           Performance-focused travel planning workspace.
         </p>
+        <Checkbox />
       </main>
     </div>
   );
