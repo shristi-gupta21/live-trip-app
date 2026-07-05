@@ -1,7 +1,20 @@
 import React from "react";
 
-const trip = () => {
-  return <div>trip</div>;
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ tripId: string }>;
+}) => {
+  const { tripId } = await params;
+
+  return {
+    title: `Trip ${tripId}`,
+    description: `Details for trip ${tripId}`,
+  };
 };
 
-export default trip;
+const Trip = () => {
+  return <div>Trip</div>;
+};
+
+export default Trip;
