@@ -1,5 +1,7 @@
 import React from "react";
 
+import { places } from "@/mock-data/place";
+
 export const generateMetadata = async ({
   params,
 }: {
@@ -13,8 +15,20 @@ export const generateMetadata = async ({
   };
 };
 
-const Trip = () => {
-  return <div>Trip</div>;
+const Trip = async ({ params }: { params: Promise<{ tripId: string }> }) => {
+  const { tripId } = await params;
+  return (
+    <div>
+      {places
+        .filter((place) => place.category === tripId)
+        .map((place) => (
+          <div key={place.id}>
+            {/* <Image src={place.imageUrl} height={300} width={300} alt="" /> */}
+            <span>{place.name}</span>
+          </div>
+        ))}
+    </div>
+  );
 };
 
 export default Trip;
