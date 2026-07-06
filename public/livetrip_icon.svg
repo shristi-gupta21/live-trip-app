@@ -1,0 +1,11 @@
+<svg viewBox="84 82 100 119" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>livetrip icon</title>
+  <path d="M120,195 C97,168 90,148 90,126 A30,30 0 1,1 150,126 C150,148 143,168 120,195 Z"
+        fill="none" stroke="#000000" stroke-width="4"/>
+  <circle cx="120" cy="124" r="11" fill="#000000"/>
+  <path d="M131,130 Q160,150 175,170"
+        stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4" fill="none"/>
+  <circle cx="175" cy="170" r="6" fill="none" stroke="#000000" stroke-width="3"/>
+  <circle cx="152" cy="100" r="13" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="152" cy="100" r="6" fill="#000000"/>
+</svg>
