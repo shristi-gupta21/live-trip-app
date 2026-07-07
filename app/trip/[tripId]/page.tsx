@@ -1,5 +1,14 @@
+import Image from "next/image";
 import React from "react";
 
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { places } from "@/mock-data/place";
 
 export const generateMetadata = async ({
@@ -18,14 +27,29 @@ export const generateMetadata = async ({
 const Trip = async ({ params }: { params: Promise<{ tripId: string }> }) => {
   const { tripId } = await params;
   return (
-    <div>
+    <div className="flex flex-wrap gap-10 mt-10 justify-center">
       {places
         .filter((place) => place.category === tripId)
         .map((place) => (
-          <div key={place.id}>
-            {/* <Image src={place.imageUrl} height={300} width={300} alt="" /> */}
-            <span>{place.name}</span>
-          </div>
+          <Card key={place.id} className="relative">
+            <Image
+              src={place.imageUrl}
+              alt={place.name}
+              height={200}
+              width={350}
+              className="h-auto w-[300px] rounded-lg object-cover"
+            />
+            <CardHeader>
+              <CardTitle>{place.name}</CardTitle>
+              <CardDescription>
+                Closing time: {place.closingTime}
+              </CardDescription>
+            </CardHeader>
+
+            <CardFooter>
+              <CardAction> View more </CardAction>
+            </CardFooter>
+          </Card>
         ))}
     </div>
   );
