@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
@@ -37,13 +38,21 @@ const Trip = async ({ params }: { params: Promise<{ tripId: string }> }) => {
               alt={place.name}
               height={200}
               width={350}
-              className="h-auto w-[300px] rounded-lg object-cover"
+              className="h-[250px] w-[400px] rounded-lg object-cover"
             />
             <CardHeader>
               <CardTitle>{place.name}</CardTitle>
-              <CardDescription>
-                Closing time: {place.closingTime}
+              <CardDescription className="flex justify-between gap-4">
+                <span>Average visit time: {place.averageVisitTime} min</span>
+                <span>Closing time: {place.closingTime}</span>
               </CardDescription>
+              <div className="flex gap-2 flex-wrap mt-2">
+                {place.tags.map((tag) => (
+                  <Badge key={tag} className="capitalize">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
             </CardHeader>
 
             <CardFooter>
