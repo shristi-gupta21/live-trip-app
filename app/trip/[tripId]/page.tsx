@@ -28,8 +28,11 @@ export const generateMetadata = async ({
 
 const Trip = async ({ params }: { params: Promise<{ tripId: string }> }) => {
   const { tripId } = await params;
+  // const location =
+  // console.log(location);
   return (
     <div className="flex flex-wrap gap-10 mt-10 justify-center">
+      <div></div>
       {places
         .filter((place) => place.category === tripId)
         .map((place) => (
