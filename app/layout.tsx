@@ -40,9 +40,9 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <body className="min-h-full flex flex-col p-4">
+      <body className="min-h-full flex flex-col p-4 ">
         <Header />
-        {children}
+        <div className="mx-auto  max-w-6xl w-full">{children}</div>
       </body>
     </html>
   );

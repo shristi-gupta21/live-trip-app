@@ -18,7 +18,7 @@ const placeCountByCategory = categories.map((category) => ({
 
 const DiscoverPage = () => {
   return (
-    <div className="mx-auto flex max-w-6xl w-full flex-col gap-6 py-6">
+    <div className="flex flex-col gap-6 py-6">
       <div>
         <p className="text-sm text-muted-foreground">Planning for</p>
         <h1 className="text-2xl font-semibold">Goa</h1>
