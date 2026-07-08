@@ -1,4 +1,4 @@
-import { Bookmark } from "lucide-react";
+import { Plus } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -56,7 +56,7 @@ const PlaceCard = ({ place, compact = false, onClick }: PlaceCardProps) => {
         className="absolute top-2 right-2 z-10 flex size-10 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm"
         onClick={(event) => event.stopPropagation()}
       >
-        <Bookmark className="size-4" />
+        <Plus className="size-4" />
       </button>
       <CardHeader>
         <CardTitle className={compact ? "text-sm" : undefined}>

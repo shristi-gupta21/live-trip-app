@@ -12,18 +12,22 @@ interface VirtualizedPlaceListProps {
   onPlaceClick?: (place: Place) => void;
 }
 
-const ROW_HEIGHT = 460;
+const ROW_HEIGHT = 440;
+const ROW_GAP = 20; // matches gap-5 (1.25rem)
+const COLUMNS = 3;
 
 const VirtualizedPlaceList = ({
   places,
   onPlaceClick,
 }: VirtualizedPlaceListProps) => {
   const parentRef = useRef<HTMLDivElement>(null);
+  const rowCount = Math.ceil(places.length / COLUMNS);
 
   const virtualizer = useVirtualizer({
-    count: places.length,
+    count: rowCount,
     getScrollElement: () => parentRef.current,
     estimateSize: () => ROW_HEIGHT,
+    gap: ROW_GAP,
     overscan: 4,
   });
 
@@ -34,28 +38,38 @@ const VirtualizedPlaceList = ({
       </p>
     );
   }
-  // console.log(virtualizer.getTotalSize());
+
   return (
     <div
       ref={parentRef}
       className="h-[calc(100vh-16rem)] overflow-auto rounded-xl ring-1 ring-foreground/10"
     >
       <div
-        className="relative w-full"
+        className="relative w-full "
         style={{ height: `${virtualizer.getTotalSize()}px` }}
       >
-        {virtualizer.getVirtualItems().map((virtualRow) => {
-          const place = places[virtualRow.index];
+        {virtualizer.getVirtualItems().map((virtualRow, index) => {
+          const rowIndex = virtualRow.index;
+          const rowPlaces = places.slice(
+            rowIndex * COLUMNS,
+            rowIndex * COLUMNS + COLUMNS,
+          );
           return (
             <div
-              key={place.id}
-              className="absolute top-0 left-0 w-full px-1"
+              key={index}
+              className="absolute top-0 left-0 w-full px-1 grid grid-cols-3 gap-5"
               style={{
                 height: `${virtualRow.size}px`,
                 transform: `translateY(${virtualRow.start}px)`,
               }}
             >
-              <PlaceCard place={place} onClick={() => onPlaceClick?.(place)} />
+              {rowPlaces.map((place) => (
+                <PlaceCard
+                  key={place.id}
+                  place={place}
+                  onClick={() => onPlaceClick?.(place)}
+                />
+              ))}
             </div>
           );
         })}
