@@ -1,9 +1,11 @@
-export const places = [
+import { type Place } from "@/features/places/types";
+
+export const places: Place[] = [
   {
     id: "place_1",
     name: "Fort Aguada",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.5,
     imageUrl: "https://picsum.photos/seed/place_1/400/300",
     priceLevel: "low",
@@ -14,8 +16,8 @@ export const places = [
   {
     id: "place_2",
     name: "Basilica of Bom Jesus",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.7,
     imageUrl: "https://picsum.photos/seed/place_2/400/300",
     priceLevel: "low",
@@ -26,8 +28,8 @@ export const places = [
   {
     id: "place_3",
     name: "Se Cathedral",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.6,
     imageUrl: "https://picsum.photos/seed/place_3/400/300",
     priceLevel: "low",
@@ -38,8 +40,8 @@ export const places = [
   {
     id: "place_4",
     name: "Dudhsagar Falls",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.8,
     imageUrl: "https://picsum.photos/seed/place_4/400/300",
     priceLevel: "medium",
@@ -50,8 +52,8 @@ export const places = [
   {
     id: "place_5",
     name: "Chapora Fort",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_5/400/300",
     priceLevel: "low",
@@ -62,8 +64,8 @@ export const places = [
   {
     id: "place_6",
     name: "Palolem Beach",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.6,
     imageUrl: "https://picsum.photos/seed/place_6/400/300",
     priceLevel: "low",
@@ -74,8 +76,8 @@ export const places = [
   {
     id: "place_7",
     name: "Calangute Beach",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_7/400/300",
     priceLevel: "low",
@@ -86,8 +88,8 @@ export const places = [
   {
     id: "place_8",
     name: "Baga Beach",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_8/400/300",
     priceLevel: "medium",
@@ -98,8 +100,8 @@ export const places = [
   {
     id: "place_9",
     name: "Old Goa Heritage Walk",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.5,
     imageUrl: "https://picsum.photos/seed/place_9/400/300",
     priceLevel: "low",
@@ -110,8 +112,8 @@ export const places = [
   {
     id: "place_10",
     name: "Spice Plantation Tour",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_10/400/300",
     priceLevel: "medium",
@@ -122,8 +124,8 @@ export const places = [
   {
     id: "place_11",
     name: "Aguada Lighthouse",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_11/400/300",
     priceLevel: "low",
@@ -134,8 +136,8 @@ export const places = [
   {
     id: "place_12",
     name: "Dona Paula Viewpoint",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.1,
     imageUrl: "https://picsum.photos/seed/place_12/400/300",
     priceLevel: "low",
@@ -146,8 +148,8 @@ export const places = [
   {
     id: "place_13",
     name: "Cotigao Wildlife Sanctuary",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_13/400/300",
     priceLevel: "medium",
@@ -158,8 +160,8 @@ export const places = [
   {
     id: "place_14",
     name: "Tambdi Surla Temple",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.5,
     imageUrl: "https://picsum.photos/seed/place_14/400/300",
     priceLevel: "low",
@@ -170,8 +172,8 @@ export const places = [
   {
     id: "place_15",
     name: "Mangeshi Temple",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_15/400/300",
     priceLevel: "low",
@@ -182,8 +184,8 @@ export const places = [
   {
     id: "place_16",
     name: "Salim Ali Bird Sanctuary",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_16/400/300",
     priceLevel: "medium",
@@ -194,8 +196,8 @@ export const places = [
   {
     id: "place_17",
     name: "Reis Magos Fort",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_17/400/300",
     priceLevel: "low",
@@ -206,8 +208,8 @@ export const places = [
   {
     id: "place_18",
     name: "Arambol Sweet Lake",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_18/400/300",
     priceLevel: "low",
@@ -218,8 +220,8 @@ export const places = [
   {
     id: "place_19",
     name: "Cabo de Rama Fort",
-    city: "Goa",
-    category: "sightseeing",
+    destination: "goa",
+    category: "nature",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_19/400/300",
     priceLevel: "low",
@@ -230,7 +232,7 @@ export const places = [
   {
     id: "place_20",
     name: "Gunpowder",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.6,
     imageUrl: "https://picsum.photos/seed/place_20/400/300",
@@ -242,7 +244,7 @@ export const places = [
   {
     id: "place_21",
     name: "Britto's Beach Shack",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_21/400/300",
@@ -254,7 +256,7 @@ export const places = [
   {
     id: "place_22",
     name: "Martin's Corner",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.5,
     imageUrl: "https://picsum.photos/seed/place_22/400/300",
@@ -266,7 +268,7 @@ export const places = [
   {
     id: "place_23",
     name: "Vinayak Family Restaurant",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_23/400/300",
@@ -278,7 +280,7 @@ export const places = [
   {
     id: "place_24",
     name: "Fisherman's Wharf",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_24/400/300",
@@ -290,7 +292,7 @@ export const places = [
   {
     id: "place_25",
     name: "Souza Lobo",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_25/400/300",
@@ -302,7 +304,7 @@ export const places = [
   {
     id: "place_26",
     name: "Vinayak Restaurant Mapusa",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.1,
     imageUrl: "https://picsum.photos/seed/place_26/400/300",
@@ -314,7 +316,7 @@ export const places = [
   {
     id: "place_27",
     name: "Bhaji Pao",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_27/400/300",
@@ -326,7 +328,7 @@ export const places = [
   {
     id: "place_28",
     name: "Pousada By The Beach",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.7,
     imageUrl: "https://picsum.photos/seed/place_28/400/300",
@@ -338,7 +340,7 @@ export const places = [
   {
     id: "place_29",
     name: "Ritz Classic",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_29/400/300",
@@ -350,7 +352,7 @@ export const places = [
   {
     id: "place_30",
     name: "Zeebop by the Sea",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_30/400/300",
@@ -362,7 +364,7 @@ export const places = [
   {
     id: "place_31",
     name: "Mum's Kitchen",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.6,
     imageUrl: "https://picsum.photos/seed/place_31/400/300",
@@ -374,7 +376,7 @@ export const places = [
   {
     id: "place_32",
     name: "Noronha's Corner",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_32/400/300",
@@ -386,7 +388,7 @@ export const places = [
   {
     id: "place_33",
     name: "Joseph Bar",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.1,
     imageUrl: "https://picsum.photos/seed/place_33/400/300",
@@ -398,7 +400,7 @@ export const places = [
   {
     id: "place_34",
     name: "Zomway Shack",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_34/400/300",
@@ -410,7 +412,7 @@ export const places = [
   {
     id: "place_35",
     name: "The Black Sheep Bistro",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.5,
     imageUrl: "https://picsum.photos/seed/place_35/400/300",
@@ -422,7 +424,7 @@ export const places = [
   {
     id: "place_36",
     name: "Saraya Eco Stay Cafe",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_36/400/300",
@@ -434,7 +436,7 @@ export const places = [
   {
     id: "place_37",
     name: "Fernando's Nostalgia",
-    city: "Goa",
+    destination: "goa",
     category: "food",
     rating: 4.7,
     imageUrl: "https://picsum.photos/seed/place_37/400/300",
@@ -446,8 +448,8 @@ export const places = [
   {
     id: "place_38",
     name: "Anjuna Flea Market",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_38/400/300",
     priceLevel: "low",
@@ -458,8 +460,8 @@ export const places = [
   {
     id: "place_39",
     name: "Mapusa Market",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.1,
     imageUrl: "https://picsum.photos/seed/place_39/400/300",
     priceLevel: "low",
@@ -470,8 +472,8 @@ export const places = [
   {
     id: "place_40",
     name: "Mall De Goa",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_40/400/300",
     priceLevel: "medium",
@@ -482,8 +484,8 @@ export const places = [
   {
     id: "place_41",
     name: "Saturday Night Market Arpora",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_41/400/300",
     priceLevel: "medium",
@@ -494,8 +496,8 @@ export const places = [
   {
     id: "place_42",
     name: "Calangute Market Square",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 3.9,
     imageUrl: "https://picsum.photos/seed/place_42/400/300",
     priceLevel: "low",
@@ -506,8 +508,8 @@ export const places = [
   {
     id: "place_43",
     name: "Mackie's Night Bazaar",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_43/400/300",
     priceLevel: "medium",
@@ -518,8 +520,8 @@ export const places = [
   {
     id: "place_44",
     name: "Candolim Main Market",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 3.8,
     imageUrl: "https://picsum.photos/seed/place_44/400/300",
     priceLevel: "low",
@@ -530,8 +532,8 @@ export const places = [
   {
     id: "place_45",
     name: "Fontainhas Heritage Shop",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_45/400/300",
     priceLevel: "medium",
@@ -542,8 +544,8 @@ export const places = [
   {
     id: "place_46",
     name: "Tibetan Market Baga",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 3.9,
     imageUrl: "https://picsum.photos/seed/place_46/400/300",
     priceLevel: "low",
@@ -554,8 +556,8 @@ export const places = [
   {
     id: "place_47",
     name: "Goa Handicrafts Emporium",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.1,
     imageUrl: "https://picsum.photos/seed/place_47/400/300",
     priceLevel: "medium",
@@ -566,8 +568,8 @@ export const places = [
   {
     id: "place_48",
     name: "Azad Gali Shopping Lane",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 3.8,
     imageUrl: "https://picsum.photos/seed/place_48/400/300",
     priceLevel: "low",
@@ -578,8 +580,8 @@ export const places = [
   {
     id: "place_49",
     name: "Caculo Mall",
-    city: "Goa",
-    category: "shopping",
+    destination: "goa",
+    category: "summer-picks",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_49/400/300",
     priceLevel: "medium",
@@ -590,7 +592,7 @@ export const places = [
   {
     id: "place_50",
     name: "Tito's Lane",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_50/400/300",
@@ -602,7 +604,7 @@ export const places = [
   {
     id: "place_51",
     name: "Curlies Beach Shack",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.4,
     imageUrl: "https://picsum.photos/seed/place_51/400/300",
@@ -614,7 +616,7 @@ export const places = [
   {
     id: "place_52",
     name: "Shiva Valley",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_52/400/300",
@@ -626,7 +628,7 @@ export const places = [
   {
     id: "place_53",
     name: "Cafe Mambos",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_53/400/300",
@@ -638,7 +640,7 @@ export const places = [
   {
     id: "place_54",
     name: "SinQ Nightclub",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.1,
     imageUrl: "https://picsum.photos/seed/place_54/400/300",
@@ -650,7 +652,7 @@ export const places = [
   {
     id: "place_55",
     name: "Club Cubana",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.2,
     imageUrl: "https://picsum.photos/seed/place_55/400/300",
@@ -662,7 +664,7 @@ export const places = [
   {
     id: "place_56",
     name: "LPK Waterfront",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.0,
     imageUrl: "https://picsum.photos/seed/place_56/400/300",
@@ -674,7 +676,7 @@ export const places = [
   {
     id: "place_57",
     name: "Hammerzz Nightclub",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 3.9,
     imageUrl: "https://picsum.photos/seed/place_57/400/300",
@@ -686,7 +688,7 @@ export const places = [
   {
     id: "place_58",
     name: "Club Zephyr",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 3.8,
     imageUrl: "https://picsum.photos/seed/place_58/400/300",
@@ -698,7 +700,7 @@ export const places = [
   {
     id: "place_59",
     name: "Silent Noise Party Palolem",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.5,
     imageUrl: "https://picsum.photos/seed/place_59/400/300",
@@ -710,7 +712,7 @@ export const places = [
   {
     id: "place_60",
     name: "Hilltop Vagator",
-    city: "Goa",
+    destination: "goa",
     category: "nightlife",
     rating: 4.3,
     imageUrl: "https://picsum.photos/seed/place_60/400/300",

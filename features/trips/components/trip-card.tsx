@@ -31,7 +31,7 @@ const TripCard = ({ place }: { place: Place }) => {
       </button>
       <CardHeader>
         <CardTitle>
-          {place.name}, {place.city}
+          {place.name}, {place.destination}
         </CardTitle>
         <CardDescription className="flex justify-between gap-4">
           <span>Average visit time: {place.averageVisitTime} min</span>

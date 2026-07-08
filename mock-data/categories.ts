@@ -1,11 +1,5 @@
 export const categories = [
   {
-    id: "sightseeing",
-    name: "Sightseeing",
-    imageUrl: "https://picsum.photos/seed/category-food/600/400",
-    description: "Forts, beaches, and heritage spots",
-  },
-  {
     id: "food",
     name: "Food",
     imageUrl:
@@ -13,16 +7,22 @@ export const categories = [
     description: "Goan seafood, cafes, and local eats",
   },
   {
-    id: "shopping",
-    name: "Shopping",
-    imageUrl: "https://picsum.photos/seed/category-shopping/600/400",
-    description: "Markets, malls, and handicrafts",
+    id: "nature",
+    name: "Nature",
+    imageUrl: "https://picsum.photos/seed/category-nature/600/400",
+    description: "Forts, beaches, waterfalls, and heritage spots",
   },
   {
     id: "nightlife",
     name: "Nightlife",
     imageUrl: "https://picsum.photos/seed/category-nightlife/600/400",
     description: "Clubs, beach shacks, and live music",
+  },
+  {
+    id: "summer-picks",
+    name: "Summer Picks",
+    imageUrl: "https://picsum.photos/seed/category-summer/600/400",
+    description: "Markets, seasonal highlights, and hidden gems",
   },
 ] as const;
 
