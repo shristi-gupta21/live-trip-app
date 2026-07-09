@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import { Suspense } from "react";
 
+import LoadingState from "@/components/shared/loading-state";
 import DiscoverView from "@/features/discover/components/discover-view";
 
 export const metadata: Metadata = {
@@ -11,11 +12,7 @@ export const metadata: Metadata = {
 const DiscoverPage = () => {
   return (
     <Suspense
-      fallback={
-        <div className="py-12 text-center text-sm text-muted-foreground">
-          Loading discover...
-        </div>
-      }
+      fallback={<LoadingState message="Loading discover" variant="spinner" />}
     >
       <DiscoverView />
     </Suspense>
