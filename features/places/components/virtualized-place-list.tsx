@@ -60,7 +60,7 @@ const VirtualizedPlaceList = ({
               className="absolute top-0 left-0 w-full px-1 grid grid-cols-3 gap-5"
               style={{
                 height: `${virtualRow.size}px`,
-                transform: `translateY(${virtualRow.start}px)`,
+                transform: `translateY(${virtualRow.start + 4}px)`,
               }}
             >
               {rowPlaces.map((place) => (
