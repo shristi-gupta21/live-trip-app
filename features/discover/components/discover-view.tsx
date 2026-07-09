@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
-import { filterPlaces } from "@/features/places/api";
+import ErrorState from "@/components/shared/error-state";
+import LoadingState from "@/components/shared/loading-state";
 import VirtualizedPlaceList from "@/features/places/components/virtualized-place-list";
+import { usePlaces } from "@/hooks/usePlaces";
 import { DEFAULT_DESTINATION, destinationLabels } from "@/lib/constants";
 import { categories, type CategoryId } from "@/mock-data/categories";
 import { places } from "@/mock-data/place";
@@ -18,7 +20,9 @@ const isCategoryId = (value: string | null): value is CategoryId =>
 const DiscoverView = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const destination = searchParams.get("destination") ?? DEFAULT_DESTINATION;
+  const destination = (
+    searchParams.get("destination") ?? DEFAULT_DESTINATION
+  ).toLowerCase();
   const categoryParam = searchParams.get("category");
   const category = isCategoryId(categoryParam) ? categoryParam : undefined;
   const query = searchParams.get("q") ?? undefined;
@@ -39,10 +43,11 @@ const DiscoverView = () => {
     );
   }, [destination]);
 
-  const filteredPlaces = useMemo(
-    () => (category ? filterPlaces({ destination, category, q: query }) : []),
-    [destination, category, query],
-  );
+  const { data, isLoading, isError, isSuccess, refetch } = usePlaces({
+    destination,
+    category,
+    q: query,
+  });
 
   const updateParams = (updates: Record<string, string | null>) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -78,7 +83,7 @@ const DiscoverView = () => {
           <h1 className="text-2xl font-semibold">{destinationLabel}</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             {category
-              ? `Showing ${filteredPlaces.length} places`
+              ? `Showing ${data?.length} places`
               : "Pick a category to explore places"}
           </p>
         </div>
@@ -108,7 +113,16 @@ const DiscoverView = () => {
               Clear category
             </button>
           </div>
-          <VirtualizedPlaceList places={filteredPlaces} />
+          {isLoading ? (
+            <LoadingState message="Loading places..." variant="spinner" />
+          ) : isError ? (
+            <ErrorState
+              message="Could not load places"
+              onRetry={() => refetch()}
+            />
+          ) : isSuccess ? (
+            <VirtualizedPlaceList places={data ?? []} />
+          ) : null}
         </div>
       ) : (
         <CategoryPicker
