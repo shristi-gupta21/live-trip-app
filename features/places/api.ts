@@ -24,7 +24,7 @@ export const filterPlaces = (filters: PlaceFilters): Place[] => {
 };
 
 export async function fetchPlaces(filters: PlaceFilters): Promise<Place[]> {
-  await delay(40000);
+  await delay(400);
   return filterPlaces(filters);
 }
 
