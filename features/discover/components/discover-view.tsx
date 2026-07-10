@@ -114,7 +114,7 @@ const DiscoverView = () => {
             </button>
           </div>
           {isLoading ? (
-            <LoadingState message="Loading places..." variant="spinner" />
+            <LoadingState message="Loading places..." variant="skeleton" />
           ) : isError ? (
             <ErrorState
               message="Could not load places"
