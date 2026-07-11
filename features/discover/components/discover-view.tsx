@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import ErrorState from "@/components/shared/error-state";
 import LoadingState from "@/components/shared/loading-state";
+import PlaceDetailDrawer from "@/features/places/components/place-detail-drawer";
 import VirtualizedPlaceList from "@/features/places/components/virtualized-place-list";
+import { type Place } from "@/features/places/types";
 import { usePlaces } from "@/hooks/usePlaces";
 import { DEFAULT_DESTINATION, destinationLabels } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import { categories, type CategoryId } from "@/mock-data/categories";
 import { places } from "@/mock-data/place";
 
@@ -20,6 +23,9 @@ const isCategoryId = (value: string | null): value is CategoryId =>
 const DiscoverView = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [showPlaceDetailView, setShowPlaceDetailView] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+
   const destination = (
     searchParams.get("destination") ?? DEFAULT_DESTINATION
   ).toLowerCase();
@@ -75,6 +81,16 @@ const DiscoverView = () => {
     updateParams({ category: null, q: null });
   };
 
+  const handlePlaceClick = (place: Place) => {
+    if (showPlaceDetailView && selectedPlace?.id === place.id) {
+      setShowPlaceDetailView(false);
+      return;
+    }
+
+    setSelectedPlace(place);
+    setShowPlaceDetailView(true);
+  };
+
   return (
     <div className="flex flex-col gap-6 pt-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
@@ -121,7 +137,10 @@ const DiscoverView = () => {
               onRetry={() => refetch()}
             />
           ) : isSuccess ? (
-            <VirtualizedPlaceList places={data ?? []} />
+            <VirtualizedPlaceList
+              places={data ?? []}
+              onPlaceClick={handlePlaceClick}
+            />
           ) : null}
         </div>
       ) : (
@@ -132,6 +151,18 @@ const DiscoverView = () => {
           variant="grid"
         />
       )}
+
+      <div
+        className={cn(
+          "fixed inset-y-0 right-0 z-50 w-full max-w-md border-l bg-background shadow-lg transition-transform duration-300 ease-in-out",
+          showPlaceDetailView
+            ? "translate-x-0"
+            : "pointer-events-none translate-x-full",
+        )}
+        aria-hidden={!showPlaceDetailView}
+      >
+        {selectedPlace ? <PlaceDetailDrawer place={selectedPlace} /> : null}
+      </div>
     </div>
   );
 };
