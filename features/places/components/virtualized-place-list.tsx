@@ -68,6 +68,7 @@ const VirtualizedPlaceList = ({
                   key={place.id}
                   place={place}
                   onClick={() => onPlaceClick?.(place)}
+                  compact={true}
                 />
               ))}
             </div>

@@ -6,12 +6,12 @@ import { useMemo, useState } from "react";
 
 import ErrorState from "@/components/shared/error-state";
 import LoadingState from "@/components/shared/loading-state";
+import { Drawer } from "@/components/ui/drawer";
 import PlaceDetailDrawer from "@/features/places/components/place-detail-drawer";
 import VirtualizedPlaceList from "@/features/places/components/virtualized-place-list";
 import { type Place } from "@/features/places/types";
 import { usePlaces } from "@/hooks/usePlaces";
 import { DEFAULT_DESTINATION, destinationLabels } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 import { categories, type CategoryId } from "@/mock-data/categories";
 import { places } from "@/mock-data/place";
 
@@ -23,7 +23,7 @@ const isCategoryId = (value: string | null): value is CategoryId =>
 const DiscoverView = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [showPlaceDetailView, setShowPlaceDetailView] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
   const destination = (
@@ -82,88 +82,79 @@ const DiscoverView = () => {
   };
 
   const handlePlaceClick = (place: Place) => {
-    if (showPlaceDetailView && selectedPlace?.id === place.id) {
-      setShowPlaceDetailView(false);
-      return;
-    }
-
     setSelectedPlace(place);
-    setShowPlaceDetailView(true);
+    setIsDrawerOpen(true);
   };
 
   return (
-    <div className="flex flex-col gap-6 pt-6">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p className="text-sm text-muted-foreground">Planning for</p>
-          <h1 className="text-2xl font-semibold">{destinationLabel}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {category
-              ? `Showing ${data?.length} places`
-              : "Pick a category to explore places"}
-          </p>
-        </div>
-        <Link
-          href="/trip/goa-weekend"
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/80"
-        >
-          My Trip
-        </Link>
-      </div>
-
-      {category ? (
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <CategoryPicker
-              destination={destination}
-              activeCategory={category}
-              placeCountByCategory={placeCountByCategory}
-              onSelect={handleCategorySelect}
-              variant="chips"
-            />
-            <button
-              type="button"
-              onClick={handleClearCategory}
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Clear category
-            </button>
+    <Drawer
+      open={isDrawerOpen}
+      onOpenChange={setIsDrawerOpen}
+      direction="right"
+    >
+      <div className="flex flex-col gap-6 pt-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-sm text-muted-foreground">Planning for</p>
+            <h1 className="text-2xl font-semibold">{destinationLabel}</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {category
+                ? `Showing ${data?.length} places`
+                : "Pick a category to explore places"}
+            </p>
           </div>
-          {isLoading ? (
-            <LoadingState message="Loading places..." variant="skeleton" />
-          ) : isError ? (
-            <ErrorState
-              message="Could not load places"
-              onRetry={() => refetch()}
-            />
-          ) : isSuccess ? (
-            <VirtualizedPlaceList
-              places={data ?? []}
-              onPlaceClick={handlePlaceClick}
-            />
-          ) : null}
+          <Link
+            href="/trip/goa-weekend"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+          >
+            My Trip
+          </Link>
         </div>
-      ) : (
-        <CategoryPicker
-          destination={destination}
-          placeCountByCategory={placeCountByCategory}
-          onSelect={handleCategorySelect}
-          variant="grid"
-        />
-      )}
 
-      <div
-        className={cn(
-          "fixed inset-y-0 right-0 z-50 w-full max-w-md border-l bg-background shadow-lg transition-transform duration-300 ease-in-out",
-          showPlaceDetailView
-            ? "translate-x-0"
-            : "pointer-events-none translate-x-full",
+        {category ? (
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <CategoryPicker
+                destination={destination}
+                activeCategory={category}
+                placeCountByCategory={placeCountByCategory}
+                onSelect={handleCategorySelect}
+                variant="chips"
+              />
+              <button
+                type="button"
+                onClick={handleClearCategory}
+                className="text-sm text-muted-foreground hover:text-foreground"
+              >
+                Clear category
+              </button>
+            </div>
+            {isLoading ? (
+              <LoadingState message="Loading places..." variant="skeleton" />
+            ) : isError ? (
+              <ErrorState
+                message="Could not load places"
+                onRetry={() => refetch()}
+              />
+            ) : isSuccess ? (
+              <VirtualizedPlaceList
+                places={data ?? []}
+                onPlaceClick={handlePlaceClick}
+              />
+            ) : null}
+          </div>
+        ) : (
+          <CategoryPicker
+            destination={destination}
+            placeCountByCategory={placeCountByCategory}
+            onSelect={handleCategorySelect}
+            variant="grid"
+          />
         )}
-        aria-hidden={!showPlaceDetailView}
-      >
+
         {selectedPlace ? <PlaceDetailDrawer place={selectedPlace} /> : null}
       </div>
-    </div>
+    </Drawer>
   );
 };
 
