@@ -1,10 +1,6 @@
 import { type Place, type PlaceFilters } from "@/features/places/types";
+import { delay } from "@/lib/utils";
 import { places } from "@/mock-data/place";
-
-export const delay = (ms: number) =>
-  new Promise<void>((resolve) => {
-    setTimeout(resolve, ms);
-  });
 
 export const filterPlaces = (filters: PlaceFilters): Place[] => {
   const query = filters.q?.trim().toLowerCase();

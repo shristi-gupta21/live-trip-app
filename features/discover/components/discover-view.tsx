@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import ErrorState from "@/components/shared/error-state";
 import LoadingState from "@/components/shared/loading-state";
+import PlaceDetailDrawer from "@/features/places/components/place-detail-drawer";
 import VirtualizedPlaceList from "@/features/places/components/virtualized-place-list";
+import { type Place } from "@/features/places/types";
 import { usePlaces } from "@/hooks/usePlaces";
 import { DEFAULT_DESTINATION, destinationLabels } from "@/lib/constants";
 import { categories, type CategoryId } from "@/mock-data/categories";
@@ -20,6 +22,9 @@ const isCategoryId = (value: string | null): value is CategoryId =>
 const DiscoverView = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+
   const destination = (
     searchParams.get("destination") ?? DEFAULT_DESTINATION
   ).toLowerCase();
@@ -75,6 +80,11 @@ const DiscoverView = () => {
     updateParams({ category: null, q: null });
   };
 
+  const handlePlaceClick = (place: Place) => {
+    setSelectedPlace(place);
+    setIsDrawerOpen(true);
+  };
+
   return (
     <div className="flex flex-col gap-6 pt-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
@@ -121,7 +131,10 @@ const DiscoverView = () => {
               onRetry={() => refetch()}
             />
           ) : isSuccess ? (
-            <VirtualizedPlaceList places={data ?? []} />
+            <VirtualizedPlaceList
+              places={data ?? []}
+              onPlaceClick={handlePlaceClick}
+            />
           ) : null}
         </div>
       ) : (
@@ -132,6 +145,14 @@ const DiscoverView = () => {
           variant="grid"
         />
       )}
+
+      {selectedPlace ? (
+        <PlaceDetailDrawer
+          place={selectedPlace}
+          open={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+        />
+      ) : null}
     </div>
   );
 };
