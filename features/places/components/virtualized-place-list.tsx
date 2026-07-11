@@ -12,7 +12,7 @@ interface VirtualizedPlaceListProps {
   onPlaceClick?: (place: Place) => void;
 }
 
-const ROW_HEIGHT = 440;
+const ROW_HEIGHT = 220;
 const ROW_GAP = 20; // matches gap-5 (1.25rem)
 const COLUMNS = 3;
 

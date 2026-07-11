@@ -23,6 +23,7 @@ interface PlaceCardProps {
 const PlaceCard = ({ place, compact = false, onClick }: PlaceCardProps) => {
   return (
     <Card
+      size={compact ? "sm" : "default"}
       className={cn(
         "relative w-full overflow-hidden",
         onClick && "cursor-pointer transition-shadow hover:ring-primary",
@@ -53,16 +54,24 @@ const PlaceCard = ({ place, compact = false, onClick }: PlaceCardProps) => {
       />
       <button
         type="button"
-        className="absolute top-2 right-2 z-10 flex size-10 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm"
+        className={cn(
+          "absolute top-2 right-2 z-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm",
+          compact ? "size-8" : "size-10",
+        )}
         onClick={(event) => event.stopPropagation()}
       >
-        <Plus className="size-4" />
+        <Plus className={compact ? "size-3.5" : "size-4"} />
       </button>
-      <CardHeader>
+      <CardHeader className={compact ? "gap-0.5" : undefined}>
         <CardTitle className={compact ? "text-sm" : undefined}>
           {place.name}
         </CardTitle>
-        <CardDescription className="flex flex-wrap justify-between gap-2">
+        <CardDescription
+          className={cn(
+            "flex flex-wrap justify-between gap-2",
+            compact && "text-xs",
+          )}
+        >
           <span>{place.averageVisitTime} min visit</span>
           <span>Closes {place.closingTime}</span>
         </CardDescription>
