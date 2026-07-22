@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useAddPlaceToDay } from "@/features/trips/hooks";
+import { useAddPlaceToDay, usePlaceInTrip } from "@/features/trips/hooks";
 import { DEFAULT_TRIP_ID } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +24,9 @@ const PlaceDetailDrawer = ({
 }) => {
   const [mounted, setMounted] = useState(false);
   const { mutate, isPending, variables } = useAddPlaceToDay();
+  const { isOnDay, isLoading: isTripLoading } = usePlaceInTrip(place.id, {
+    enabled: open,
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -120,18 +123,25 @@ const PlaceDetailDrawer = ({
           </div>
         </div>
         <div className="flex flex-col gap-2 p-4">
-          {[1, 2, 3].map((dayNumber) => (
-            <Button
-              key={dayNumber}
-              className="w-full cursor-pointer"
-              disabled={isPending}
-              onClick={() => handleAddToDay(dayNumber)}
-            >
-              {isPending && variables?.dayNumber === dayNumber
-                ? `Adding to Day ${dayNumber}...`
-                : `Add to Day ${dayNumber}`}
-            </Button>
-          ))}
+          {[1, 2, 3].map((dayNumber) => {
+            const alreadyOnDay = isOnDay(dayNumber);
+
+            return (
+              <Button
+                key={dayNumber}
+                className="w-full cursor-pointer"
+                variant={alreadyOnDay ? "secondary" : "default"}
+                disabled={isPending || alreadyOnDay || isTripLoading}
+                onClick={() => handleAddToDay(dayNumber)}
+              >
+                {isPending && variables?.dayNumber === dayNumber
+                  ? `Adding to Day ${dayNumber}...`
+                  : alreadyOnDay
+                    ? `On Day ${dayNumber}`
+                    : `Add to Day ${dayNumber}`}
+              </Button>
+            );
+          })}
         </div>
       </aside>
     </div>,
