@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 
 import Header from "@/components/layout/header";
-import { QueryProvider } from "@/lib/query-client";
+import { Providers } from "@/lib/providers";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -32,6 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
@@ -42,10 +43,10 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col p-4 ">
-        <QueryProvider>
+        <Providers>
           <Header />
           <div className="mx-auto  max-w-6xl w-full">{children}</div>
-        </QueryProvider>
+        </Providers>
       </body>
     </html>
   );

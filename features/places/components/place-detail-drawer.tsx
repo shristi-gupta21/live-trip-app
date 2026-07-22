@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useAddPlaceToDay, usePlaceInTrip } from "@/features/trips/hooks";
+import { DEFAULT_TRIP_ID } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import { type Place } from "../types";
@@ -20,6 +23,10 @@ const PlaceDetailDrawer = ({
   onClose: () => void;
 }) => {
   const [mounted, setMounted] = useState(false);
+  const { mutate, isPending, variables } = useAddPlaceToDay();
+  const { isOnDay, isLoading: isTripLoading } = usePlaceInTrip(place.id, {
+    enabled: open,
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -35,6 +42,25 @@ const PlaceDetailDrawer = ({
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
+
+  const handleAddToDay = (dayNumber: number) => {
+    mutate(
+      {
+        tripId: DEFAULT_TRIP_ID,
+        dayNumber,
+        placeId: place.id,
+      },
+      {
+        onSuccess: () => {
+          toast.success(`Added ${place.name} to Day ${dayNumber}`);
+          onClose();
+        },
+        onError: () => {
+          toast.error("Could not add place to trip");
+        },
+      },
+    );
+  };
 
   if (!mounted) return null;
 
@@ -60,7 +86,7 @@ const PlaceDetailDrawer = ({
         aria-modal="true"
         aria-label={place.name}
         className={cn(
-          "absolute inset-y-0 right-0 flex justify-between h-svh w-full max-w-md flex-col overflow-x-hidden overflow-y-auto border-l bg-popover text-sm text-popover-foreground shadow-lg transition-transform duration-300 ease-in-out",
+          "absolute inset-y-0 right-0 flex h-svh w-full max-w-md flex-col justify-between overflow-x-hidden overflow-y-auto border-l bg-popover text-sm text-popover-foreground shadow-lg transition-transform duration-300 ease-in-out",
           open ? "translate-x-0" : "translate-x-full",
         )}
       >
@@ -96,8 +122,26 @@ const PlaceDetailDrawer = ({
             </div>
           </div>
         </div>
-        <div className="p-4">
-          <Button className="w-full cursor-pointer">Add to trip</Button>
+        <div className="flex flex-col gap-2 p-4">
+          {[1, 2, 3].map((dayNumber) => {
+            const alreadyOnDay = isOnDay(dayNumber);
+
+            return (
+              <Button
+                key={dayNumber}
+                className="w-full cursor-pointer"
+                variant={alreadyOnDay ? "secondary" : "default"}
+                disabled={isPending || alreadyOnDay || isTripLoading}
+                onClick={() => handleAddToDay(dayNumber)}
+              >
+                {isPending && variables?.dayNumber === dayNumber
+                  ? `Adding to Day ${dayNumber}...`
+                  : alreadyOnDay
+                    ? `On Day ${dayNumber}`
+                    : `Add to Day ${dayNumber}`}
+              </Button>
+            );
+          })}
         </div>
       </aside>
     </div>,
